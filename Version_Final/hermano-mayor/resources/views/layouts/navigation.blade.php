@@ -1,0 +1,162 @@
+@if(@Auth::user()->hasRole('asesor'))
+<nav class="flex items-center justify-between flex-wrap bg-indigo-800 p-4">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+        </svg>
+        <span class="font-semibold text-xl tracking-tight">CapaciTEC</span>
+    </div>
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-100 border-teal-400 hover:text-white hover:border-white" id="navbar-btn">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+        </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto " id="navbar">
+        <div class="text-sm lg:flex-grow  text-center lg:text-right">
+            @if (Route::has('login'))
+            @auth
+            <a href="{{url('/dashboard')}}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-lg">
+                Inicio
+            </a>
+            @endauth
+            @endif
+            <a href="{{ route('hijo.create') }}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-lg">
+                Tu grupo
+            </a>
+            <a href="{{ route('curso.create') }}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white text-lg">
+                Asignar actividad
+            </a>
+            <div class="dropdown dropdown-end avatar online">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-24 rounded-full">
+                        <img src="{{asset ('avatar/'.Auth()->user()->foto)}}" />
+                    </div>
+                </label>
+                <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                    <li>
+                        <a class="justify-between" href="{{ route('perfila.index') }}">
+                            Perfil
+                            <span class="badge">{{Auth()->user()->name}}</span>
+                        </a>
+                    </li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <li><a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                Cerrar Sesión
+                            </a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+@endif
+@if(@Auth::user()->hasRole('novato'))
+<nav class="flex items-center justify-between flex-wrap bg-indigo-800 p-4">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+        </svg>
+        <span class="font-semibold text-xl tracking-tight">CapaciTEC</span>
+    </div>
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-100 border-teal-400 hover:text-white hover:border-white" id="navbar-btn">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+        </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto " id="navbar">
+        <div class="text-sm lg:flex-grow  text-center lg:text-right">
+            @if (Route::has('login'))
+            @auth
+            <a href="{{url('/dashboard')}}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-6 text-lg">
+                Inicio
+            </a>
+            @endauth
+            @endif
+            <a href="{{route('actividad.index')}}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-6 text-lg">
+                Ver Actividades
+            </a>
+            <div class="dropdown dropdown-end avatar online">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-24 rounded-full">
+                        <img src="{{asset ('avatar/'.Auth()->user()->foto)}}" />
+                    </div>
+                </label>
+                <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                    <li>
+                        <a class="justify-between" href="{{route('perfilp.index')}}">
+                            Perfil
+                            <span class="badge">{{Auth()->user()->name}}</span>
+                        </a>
+                    </li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <li><a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                Cerrar Sesión
+                            </a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+@endif
+@if(@Auth::user()->hasRole('superadmin'))
+<nav class="flex items-center justify-between flex-wrap bg-indigo-800 p-2">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+        </svg>
+        <span class="font-semibold text-xl tracking-tight">CapaciTEC</span>
+    </div>
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-100 border-teal-400 hover:text-white hover:border-white" id="navbar-btn">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+        </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto " id="navbar">
+        <div class="text-sm lg:flex-grow  text-center lg:text-right">
+            @if (Route::has('login'))
+            @auth
+            <a href="{{url('/dashboard')}}" class="block mt-4 g:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-lg">
+                Inicio
+            </a>
+            @endauth
+            @endif
+            <a href="#servicio" class="block mt-4 lg:inline-block lg:mt-0 text-teal-100 hover:text-white mr-4 text-lg">
+                Ver Actividades
+            </a>
+            <div class="dropdown dropdown-end avatar online">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-24 rounded-full">
+                        <img src="https://api.lorem.space/image/face?hash=33791" />
+                    </div>
+                </label>
+                <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                    <li>
+                        <a class="justify-between" href="{{route('perfilp.index')}}">
+                            Perfil
+                            <span class="badge">{{Auth()->user()->name}}</span>
+                        </a>
+                    </li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <li><a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                Cerrar Sesión
+                            </a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+@endif
